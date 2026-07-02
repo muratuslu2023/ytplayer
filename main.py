@@ -40,5 +40,5 @@ def process_music():
     data = request.get_json()
     url = data.get('music_url')
     # Use your get_playable_url function here
-    playable_url = get_playable_url(url)
-    return jsonify({"playable_url": playable_url})
+    #playable_url = get_playable_url(url)
+    return jsonify({"playable_url": "null"})
