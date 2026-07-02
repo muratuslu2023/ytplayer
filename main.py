@@ -9,7 +9,7 @@ def get_playable_url(url):
         # Path to the cookies.txt file we just created
         'cookiefile': '/home/admin/yt_player/ytplayer/cookies.txt',
         # 'bestaudio' is often more reliable for audio-only players
-        'format': 'bestaudio/best',
+        'format': 'best',
         'skip_download': True,
         # Quiet mode prevents excessive logging to the terminal
         'quiet': True,
