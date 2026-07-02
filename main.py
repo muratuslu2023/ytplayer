@@ -6,14 +6,27 @@ app = Flask(__name__)
 
 def get_playable_url(url):
     ydl_opts = {
-        'format': 'best',       # Selects the best quality combined audio+video
-        'skip_download': True,  # Prevents actual download
+        # Path to the cookies.txt file we just created
+        'cookiefile': '/home/admin/yt_player/ytplayer/cookies.txt',
+        # 'bestaudio' is often more reliable for audio-only players
+        'format': 'bestaudio/best',
+        'skip_download': True,
+        # Quiet mode prevents excessive logging to the terminal
+        'quiet': True,
+        'no_warnings': True,
     }
     
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info(url, download=False)
-        # 'url' contains the direct playable link
-        return info.get('url')
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+            # 'url' contains the direct playable link
+            return info.get('url')
+    except Exception as e:
+        print(f"Error during extraction: {e}")
+        return None
+
+
+
 
 @app.route("/")
 def index_page():
